@@ -1,0 +1,257 @@
+Let's bring this to life! Here is a fully interactive, cute web-based game prototype built using HTML, CSS, and JavaScript.
+
+It lets you style an outfit for a **"Cozy Campus Coffee Run"** and get that instant community hype boost. You can copy this code, save it as an `.html` file (like `oasis_game.html`), and open it in any browser to play!
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasrina's Oasis: OOTD Hype</title>
+    <style>
+        :root {
+            --pink-pastel: #FFDFD3;
+            --purple-pastel: #E0BBE4;
+            --mint-pastel: #D2F5E3;
+            --text-dark: #4A3E3D;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--pink-pastel), var(--purple-pastel));
+            color: var(--text-dark);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border: 2px solid var(--white);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #6C5B7B;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #8B7885;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .prompt-box {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            border-left: 5px solid #F8B195;
+            text-align: left;
+        }
+
+        .prompt-title {
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #F8B195;
+        }
+
+        .prompt-desc {
+            font-size: 16px;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .closet-section {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+            color: #6C5B7B;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 2px solid #E0BBE4;
+            background: var(--white);
+            color: var(--text-dark);
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        select:focus {
+            border-color: #F8B195;
+        }
+
+        .btn-submit {
+            background: linear-gradient(90deg, #F8B195, #F67280);
+            color: var(--white);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(246, 114, 128, 0.3);
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .hype-feed {
+            margin-top: 25px;
+            border-top: 2px dashed #E0BBE4;
+            padding-top: 20px;
+            display: none;
+            text-align: left;
+        }
+
+        .hype-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #6C5B7B;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .comment {
+            background: var(--white);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+            border: 1px solid #FFF0F5;
+        }
+
+        .comment .user {
+            font-weight: bold;
+            color: #F67280;
+            margin-right: 5px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h1>Nasrina's Oasis ✨</h1>
+    <div class="subtitle">OOTD Style & Confidence Runway</div>
+
+    <div class="prompt-box">
+        <div class="prompt-title">Today's Vibe Check</div>
+        <div class="prompt-desc">☕ Cozy Campus Coffee Run (Effortless but Cute)</div>
+    </div>
+
+    <div class="closet-section">
+        <label for="top">Select your Top:</label>
+        <select id="top">
+            <option value="Oversized Zipper Hoodie">Oversized Cream Zipper Hoodie</option>
+            <option value="Cropped Knit Sweater">Pastel Pink Cropped Knit Sweater</option>
+            <option value="Baby Tee">Baby Tee with Cute Graphic Placed</option>
+        </select>
+
+        <label for="bottom">Select your Bottoms:</label>
+        <select id="bottom">
+            <option value="Baggy Cargo Pants">Aesthetic Sage Green Cargo Pants</option>
+            <option value="Matching Flare Sweats">Matching Ribbed Flare Sweats</option>
+            <option value="Pleated Mini Skirt">Pleated Tennis Skirt with Thigh Socks</option>
+        </select>
+
+        <label for="accessory">Select your Key Accessory:</label>
+        <select id="accessory">
+            <option value="Chunky Headphones & Claw Clip">Chunky Silver Headphones & Tortoise Claw Clip</option>
+            <option value="Puffer Tote Bag">Oversized Puffer Tote Bag packed with books</option>
+            <option value="Beanie & Wire Glasses">Sage Green Beanie & Wire-Rimmed Glasses</option>
+        </select>
+    </div>
+
+    <button class="btn-submit" onclick="generateHype()">Post to Hype Feed! 💖</button>
+
+    <div class="hype-feed" id="hypeFeed">
+        <div class="hype-title">💬 The Girlies are Obsessed:</div>
+        <div id="commentsContainer"></div>
+    </div>
+</div>
+
+<script>
+    function generateHype() {
+        const top = document.getElementById('top').value;
+        const bottom = document.getElementById('bottom').value;
+        const accessory = document.getElementById('accessory').value;
+
+        const commentsContainer = document.getElementById('commentsContainer');
+        const hypeFeed = document.getElementById('hypeFeed');
+        
+        // Clear old comments
+        commentsContainer.innerHTML = '';
+        hypeFeed.style.display = 'block';
+
+        // Custom hype comments based on selection
+        const pool = [
+            `Obsessed with the ${top}! Where is it from?? ✨`,
+            `The ${bottom} is literally everything. You look stunning!`,
+            `Wait, styling the ${top} with that accessory? Masterclass. 🔥`,
+            `This outfit just cleared my skin and fixed my GPA, honestly.`,
+            `Omw to copy this exact fit immediately. 😭💖`,
+            `The ${accessory} really ties the whole vibe together. So cozy!`
+        ];
+
+        // Pick 3 random sweet comments
+        const shuffled = pool.sort(() => 0.5 - Math.random());
+        const selectedComments = shuffled.slice(0, 3);
+
+        const users = ['@matilda_vibe', '@cozy_girl_xo', '@clover.reads', '@clouds_and_coffee'];
+
+        selectedComments.forEach((text, index) => {
+            setTimeout(() => {
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment';
+                commentDiv.innerHTML = `<span class="user">${users[index % users.length]}</span> ${text}`;
+                commentsContainer.appendChild(commentDiv);
+            }, index * 400); // Staggered appearance for realistic feel
+        });
+    }
+</script>
+
+</body>
+</html>
+
+```
